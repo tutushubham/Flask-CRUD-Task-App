@@ -27,7 +27,7 @@ def index():
             db.session.commit()
             return redirect("/")
         except:
-            return "issue adding"
+            return "There was an issue adding your task"
 
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
@@ -40,10 +40,10 @@ def delete(id):
 
     try:
         db.session.delete(task_to_delete)
-        db.session.commmit()
+        db.session.commit()
         return redirect("/")
     except:
-        return "error"
+        return "There was a problem deleting that task"
 
 
 @app.route("/update/<int:id>", methods=["GET", "POST"])
